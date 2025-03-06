@@ -1,0 +1,19 @@
+{
+  "name": "lagchat-backend",
+  "version": "1.0.0",
+  "description": "chatting application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "chat": "nodemon chat.js"
+  },
+  "author": "Aown Aamir",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.8.1"
+  }
+}
