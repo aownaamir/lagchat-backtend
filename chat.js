@@ -8,10 +8,23 @@ const server = http.createServer(app);
 
 app.use(cors()); // Allow CORS requests
 
+const allowedOrigins = [
+  "http://localhost:5173", // Example: Frontend 1
+  "https://lagchat.vercel.app", // Example: Frontend 2
+  // "https://your-production-site.com"  // Production URL
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Change to frontend URL
-    // methods: ["GET", "POST"],
+    // origin: "https://lagchat.vercel.app", // Change to a specific URL
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true); // Allow the origin
+      } else {
+        callback(new Error("Not allowed by CORS")); // Reject the connection
+      }
+    },
+    methods: ["GET", "POST"],
   },
 });
 
